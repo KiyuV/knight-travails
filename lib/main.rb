@@ -8,7 +8,7 @@ class Main
   end
 
   def run
-    @board.knight_moves([0, 0], [7, 7])
+    @board.knight_moves([7,7], [0, 0])
   end
 end
 
