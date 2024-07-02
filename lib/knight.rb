@@ -49,13 +49,14 @@ class Knight
     end
     legal_moves
   end
+
   # bfs algorithm to calcualte the shortest path given a source co-ordinate
   def bfs(graph, destination)
-    node_status = Array.new(8) {Array.new(8)}
+    node_status = Array.new(8) { Array.new(8) }
 
     graph.each_with_index do |_, x|
       graph[x].each_with_index do |_, y|
-        node_status[x][y] = {:distance => nil, :predecessor => nil}
+        node_status[x][y] = { distance: nil, predecessor: nil }
       end
     end
 
@@ -72,11 +73,11 @@ class Knight
         # neighbour
         v = graph[u[0]][u[1]][i]
 
-        if node_status[v[0]][v[1]][:distance].nil?
-          node_status[v[0]][v[1]][:distance] = node_status[u[0]][u[1]][:distance] + 1
-          node_status[v[0]][v[1]][:predecessor] = u
-          queue << v
-        end
+        next unless node_status[v[0]][v[1]][:distance].nil?
+
+        node_status[v[0]][v[1]][:distance] = node_status[u[0]][u[1]][:distance] + 1
+        node_status[v[0]][v[1]][:predecessor] = u
+        queue << v
       end
     end
     node_status
